@@ -2,7 +2,7 @@ const cors = require('cors')
 const express = require('express')
 const { body, check, param, validationResult } = require('express-validator')
 
-const PORT = 8080
+const PORT = 8082
 const app = express()
 const corsOptions = { origin: ['http://localhost:3000'], optionsSuccessStatus: 200 }
 
@@ -20,11 +20,11 @@ app.get('/person/:id', cors(corsOptions), async (req, res) => {
     // const personType = req.query['personType']   // Read query parameters from URL.
     // const body = req.body                        // Read request body.
     // res.send(<YOUR OBJECT HERE>)
-    res.send({message: 'Hello World'})
+    res.send({message: 'Hey World'})
 })
 
 app.get('/message', cors(corsOptions), async(req, res) => {
-    res.send({message: 'Hi my name is Ariana Grande !'})
+    res.send({message: 'Hi my name is Ariana Grande !!!'})
 })
 
 app.listen(PORT, () => {
