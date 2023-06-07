@@ -9,7 +9,7 @@ const SELECT_PERSON  = "select * from person where person_id = ?"
 
 const SELECT_CARS = "select * from car"
 const SELECT_CAR = "select * from car where car_id = ?"
-// const SELECT_CAR_BY_MAKE = "select * from car where make = ?"
+const SELECT_CAR_BY_MAKE = "select * from car where make = ?"
 // const UPDATE_CAR = "update car set make = ?, model = ?, color = ?, price = ? where car_id = ?"
 // const INSERT_CAR = "insert into car (make, model, color, price) values (?, ?, ?, ?)"
 // const DELETE_CAR = "delete from car where car_id = ?"
@@ -92,15 +92,15 @@ exports.selectCarById = async (carId) => {
     }
 }
 
-// exports.selectCarByMake = async (make) => {
-//     try {
-//         const [rows] = await promisePool.query(SELECT_CAR_BY_MAKE, [make])
-//         return rows
-//     }
-//     catch (e) {
-//         console.log(e)
-//     }
-// }
+exports.selectCarByMake = async (make) => {
+    try {
+        const [rows] = await promisePool.query(SELECT_CAR_BY_MAKE, [make])
+        return rows
+    }
+    catch (e) {
+        console.log(e)
+    }
+}
 
 // exports.updateCar = async (car) => {
 //     try {
