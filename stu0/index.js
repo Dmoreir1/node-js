@@ -1,6 +1,6 @@
 const cors = require('cors')
 const express = require('express')
-const mySqlProxy = require('./MySqlProxy')
+const mySqlProxy = require('./mySqlProxy2')
 const { body, check, param, validationResult } = require('express-validator')
 
 const PORT = 80
