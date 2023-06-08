@@ -45,11 +45,6 @@ app.get('/car/', cors(corsOptions), async (req,res) => {
     res.send(cars);
 })
 
-app.get('/cars/:id', cors(corsOptions), async (req, res) => { 
-    const carId = req.params['id']
-    const car = await mySqlProxy.selectCarById(carId)
-    res.send(car)
-})
 
 app.get('/cars', cors(corsOptions), async (req, res) => { 
     const make = req.query.make
@@ -71,6 +66,18 @@ app.put('/cars/', cors(corsOptions), async (req, res) => {
 
 })
 
+app.get('/cars/:id', cors(corsOptions), async (req, res) => { 
+    const carId = req.params['id']
+    const car = await mySqlProxy.selectCarById(carId)
+    res.send(car)
+})
+
+app.delete('/cars/:id', cors(corsOptions), async (req,res) => {
+    const carId = req.params['id']
+    const car = await mySqlProxy.deleteCar(carId)
+    res.send(car)
+})
+ 
 app.listen(PORT, () => {
     console.log(`Express web API running on port: ${PORT}.`)
 })

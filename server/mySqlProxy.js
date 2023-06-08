@@ -12,7 +12,7 @@ const SELECT_CAR = "select * from car where car_id = ?"
 const SELECT_CAR_BY_MAKE = "select * from car where make = ?"
 const UPDATE_CAR = "update car set make = ?, model = ?, color = ?, price = ? where car_id = ?"
 const INSERT_CAR = "insert into car (make, model, color, price) values (?, ?, ?, ?)"
-// const DELETE_CAR = "delete from car where car_id = ?"
+const DELETE_CAR = "delete from car where car_id = ?"
 
 // Person
 
@@ -82,15 +82,7 @@ exports.selectCars = async () => {
     }
 }
 
-exports.selectCarById = async (carId) => {
-    try {
-        const [rows] = await promisePool.query(SELECT_CAR, [carId])
-        return rows[0]
-    }
-    catch (e) {
-        console.log(e)
-    }
-}
+
 
 exports.selectCarByMake = async (make) => {
     try {
@@ -124,12 +116,22 @@ exports.insertCar = async (car) => {
     }
 }
 
-// exports.deleteCar = async (carId) => {
-//     try {
-//         const [rows] = await promisePool.execute(DELETE_CAR, [carId])
-//         return rows
-//     }
-//     catch (e) {
-//         console.log(e)
-//     }
-// }
+exports.deleteCar = async (carId) => {
+    try {
+        const [rows] = await promisePool.execute(DELETE_CAR, [carId])
+        return rows
+    }
+    catch (e) {
+        console.log(e)
+    }
+}
+
+exports.selectCarById = async (carId) => {
+    try {
+        const [rows] = await promisePool.query(SELECT_CAR, [carId])
+        return rows[0]
+    }
+    catch (e) {
+        console.log(e)
+    }
+}
