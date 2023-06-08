@@ -40,10 +40,10 @@ app.get('/persons/', cors(corsOptions), async (req,res) => {
     res.send(persons);
 })
 
-// app.get('/cars/', cors(corsOptions), async (req,res) => {
-//     const cars = await mySqlProxy.selectCars();
-//     res.send(cars);
-// })
+app.get('/car/', cors(corsOptions), async (req,res) => {
+    const cars = await mySqlProxy.selectCars();
+    res.send(cars);
+})
 
 app.get('/cars/:id', cors(corsOptions), async (req, res) => { 
     const carId = req.params['id']
@@ -55,6 +55,20 @@ app.get('/cars', cors(corsOptions), async (req, res) => {
     const make = req.query.make
     const car = await mySqlProxy.selectCarByMake(make)
     res.send(car)
+})
+
+app.post('/cars/', cors(corsOptions), async (req, res) => { 
+    const car = req.body 
+
+    const newCar = await mySqlProxy.insertCar(car)
+    res.send(newCar)
+})
+
+app.put('/cars/', cors(corsOptions), async (req, res) => {
+    const car = req.body 
+    const update = await mySqlProxy.updateCar(car)
+    res.send(update)
+
 })
 
 app.listen(PORT, () => {
